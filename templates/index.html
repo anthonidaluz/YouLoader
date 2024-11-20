@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouLoader - Download de Vídeos do YouTube</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: white;
+      }
+      .container {
+        font-family: Arial;
+        max-width: 600px;
+        margin-top: 50px;
+        padding: 20px;
+        border: 1px solid #dc3545;
+        border-radius: 10px;
+        background-color: #f8d7da;
+      }
+      h1 {
+        color: #dc3545;
+      }
+      .btn-primary {
+        background-color: #dc3545; /* Botões primários em vermelho */
+        border-color: #dc3545; /* Borda do botão primário em vermelho */
+      }
+      .btn-primary:hover {
+        background-color: #c82333; /* Hover do botão primário */
+        border-color: #bd2130; /* Borda do botão primário em hover */
+      }
+      .btn-success {
+        background-color: #28a745; /* Botão de sucesso em verde */
+        border-color: #28a745; /* Borda do botão de sucesso */
+      }
+      .alert {
+        margin-top: 20px; /* Espaçamento superior das mensagens */
+      }
+      .footer {
+        color: black;
+        padding: 5px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        margin-top: 170px; /* Espaçamento acima do footer */
+      }
+      .footer p {
+        margin: 0;
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">YouLoader - Simples e Rápido!</h1>
+      <form method="POST" action="/">
+        <div class="form-group">
+          <label for="url">Insira a URL do vídeo para baixar:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="url"
+            name="url"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Obter Qualidades
+        </button>
+      </form>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="mt-3">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% if quality_options %}
+      <form method="POST" action="/download">
+        <input type="hidden" name="url" value="{{ url }}" />
+        <div class="form-group mt-4">
+          <label for="quality">Escolha a qualidade do vídeo:</label>
+          <select class="form-control" id="quality" name="quality" required>
+            {% for option in quality_options %}
+            <option value="{{ option.format_id }}">
+              {{ option.format_id }} - {{ option.resolution }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Baixar</button>
+      </form>
+      {% endif %}
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 YouLoader. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Anthoni da Luz.</p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+body {
+  background-color: white; 
+}
+.container {
+  max-width: 600px;
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid #dc3545; 
+  border-radius: 10px;
+  background-color: #f8d7da; 
+}
+h1 {
+  color: #dc3545; 
+}
+.btn-primary {
+  background-color: #dc3545; 
+  border-color: #dc3545; 
+}
+.btn-primary:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+.btn-success {
+  background-color: #28a745; 
+  border-color: #28a745;
+}
+.alert {
+  margin-top: 20px; 
+}
+footer {
+  background-color: #dc3545;
+  color: white; 
+  margin-top: 25px;
+  padding: 10px; 
+}
